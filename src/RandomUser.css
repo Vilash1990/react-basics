@@ -1,0 +1,17 @@
+#userTable{
+    border: 2px;
+    border-color: rgb(74, 74, 245);
+}
+
+#userTable tr{
+    padding: 1em;
+}
+
+#userTable tbody tr td{
+    text-align: left;
+}
+
+#userTable thead tr td{
+    text-align: left;
+    margin-bottom: 100px;
+}
