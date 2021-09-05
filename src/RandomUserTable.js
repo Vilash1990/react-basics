@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { lighten, makeStyles } from "@material-ui/core/styles";
+import { lighten, makeStyles, withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -30,6 +30,26 @@ function descendingComparator(a, b, orderBy) {
   }
   return 0;
 }
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.action.disabled,
+    color: theme.palette.text.secondary,
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
 
 function getComparator(order, orderBy) {
   return order === "desc"
@@ -84,16 +104,19 @@ function RandomUsersTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <StyledTableCell padding="checkbox">
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
+            style ={{
+              color: "#488ff7"
+            }}
             inputProps={{ "aria-label": "select all desserts" }}
           />
-        </TableCell>
+        </StyledTableCell>
         {headCells.map((headCell) => (
-          <TableCell
+          <StyledTableCell
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -109,7 +132,7 @@ function RandomUsersTableHead(props) {
                 </span>
               ) : null}
             </TableSortLabel>
-          </TableCell>
+          </StyledTableCell>
         ))}
       </TableRow>
     </TableHead>
@@ -128,14 +151,14 @@ RandomUsersTableHead.propTypes = {
 
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3)
   },
   highlight:
     theme.palette.type === "light"
       ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+          color: theme.palette.primary.dark,
+          backgroundColor: lighten(theme.palette.primary.light, 0.70),
         }
       : {
           color: theme.palette.text.primary,
@@ -173,7 +196,7 @@ const EnhancedTableToolbar = (props) => {
           align="left"
           component="div"
         >
-          Random Users
+          Random Users Table using Material UI
         </Typography>
       )}
 
@@ -312,7 +335,7 @@ const RandomUsersTable = ({ users }) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
-                    <TableRow
+                    <StyledTableRow
                       hover
                       onClick={(event) => handleClick(event, user.fullName)}
                       role="checkbox"
@@ -324,6 +347,9 @@ const RandomUsersTable = ({ users }) => {
                       <TableCell padding="checkbox">
                         <Checkbox
                           checked={isItemSelected}
+                          style ={{
+                            color: "#488ff7"
+                          }}
                           inputProps={{ "aria-labelledby": labelId }}
                         />
                       </TableCell>
@@ -349,7 +375,7 @@ const RandomUsersTable = ({ users }) => {
                       <TableCell align="left">
                         {user.coordinates}
                       </TableCell>
-                    </TableRow>
+                    </StyledTableRow>
                   );
                 })}
               {emptyRows > 0 && (

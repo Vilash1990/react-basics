@@ -5,7 +5,7 @@ import RandomUsers from './RandomUsers';
 const App = () => (
   <div className="App">
     {/* <Counter/> */}
-    <h1>React Basics Learning</h1>
+    <h3> User Data</h3>
     <RandomUsers />
   </div>
 );

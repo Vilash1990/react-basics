@@ -9,8 +9,8 @@ const getRandomUser = (pageNumber = 1) => axios
     console.error(`Exception while retrieveing random user data${exception}`);
   });
 
-const getRandomUsersList = () => axios
-  .get('https://randomuser.me/api?results=20')
+const getRandomUsersList = (numberOfUsers = 5) => axios
+  .get(`https://randomuser.me/api?results=${numberOfUsers}`)
   .then((response) => {
     console.info(response);
     return response.data.results;
