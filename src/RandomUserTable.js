@@ -168,8 +168,9 @@ const EnhancedTableToolbar = (props) => {
       ) : (
         <Typography
           className={classes.title}
-          variant="h6"
+          variant="h4"
           id="tableTitle"
+          align="left"
           component="div"
         >
           Random Users
