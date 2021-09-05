@@ -1,0 +1,24 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": false,
+            "experimentalObjectRestSpread": true
+        },
+        "ecmaVersion": 2020
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
+}
